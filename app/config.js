@@ -186,17 +186,19 @@ app
 //====================================================
 // 
 //====================================================
-.run(function(oauth2Service, $state, $rootScope, $location, apiUrl, $window, userService) {
+.run(function(oauth2Service, $state, $rootScope, $location, authUrl, $window, userService) {
 
 
-    oauth2Service.loginUrl = apiUrl + "/o/authorize/";
-    oauth2Service.oidcUrl = apiUrl + "/api/auths/localuserinfo/";
-    //oauth2Service.routersUrl = apiUrl + "/api/auths/routers/"; // no activar pk no se puede activar un sesion en la misma app
+    oauth2Service.loginUrl = authUrl + "/o/authorize/";
+    oauth2Service.oidcUrl = authUrl + "/api/oauth2_backend/localuserinfo/";
+    //oauth2Service.routersUrl = authUrl + "/api/oauth2_backend/routers/"; // no activar pk no se puede activar un sesion en la misma app
     //oauth2Service.redirectUri = location.origin + ""; // si colocas, colocar tal cual está registrado en al app
     console.log("location.origin=" + location.origin);
 
-    oauth2Service.clientId = "6HdrRRJTmATwasHbR8BgrwzNTi69mEAJke4VWMKK";
-    //oauth2Service.scope = "read";
+    //oauth2Service.clientId = "6HdrRRJTmATwasHbR8BgrwzNTi69mEAJke4VWMKK";//sqlite3 de https://github.com/practian-ioteca-project/ioteca_service
+    oauth2Service.clientId = "o5W31ZGx7XrCp4B4f6Mr0HMryYyUMuswMpL0LLi4";//MYSQL
+    //oauth2Service.clientId = "97xtOaQ5ZU1g1C8Xh8CN2ibqCzIda7760Zy7yFMa"; //ORA
+    oauth2Service.scope = "home";//comentar si no está configurado
 
     //https://github.com/angular-ui/ui-router/wiki
     $rootScope.$on("$stateChangeStart", function(event, toState, toParams, fromState, fromParams) {
