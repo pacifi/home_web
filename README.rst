@@ -4,7 +4,7 @@ home_web
 
 .. class:: no-web
 
-    home_web es un home site corporatico y también es un **Client application** construido en Angular para consumir los servicios API REST base de `Authorization server`_ y de `Catalogo resource server`_ siempre en cuando tiene acceso. También es autorizado por el `Authorization server`_ cumpliendo así con una aplicación SSO.
+    home_web es un home site corporativo y también es un **Client application** construido en Angular para consumir los servicios API REST base de `Authorization server`_ y de `Catalogo resource server`_ siempre en cuando tenga acceso. También es autorizado por el `Authorization server`_ cumpliendo así con una aplicación SSO.
 
 
 
