@@ -8,7 +8,12 @@ app
         $scope.asideFolded = false;
 
         $rootScope.$on('$stateChangeSuccess', function() {
-            $timeout(function() { document.getElementById('left') && $mdSidenav('left').close(); });
+            $timeout(function() {
+                if (document.getElementById('left')) {
+                    $mdSidenav('left').close();
+                }
+
+            });
         });
 
         $scope.isOpenRight = function() {
@@ -130,6 +135,7 @@ app
                 controller: 'GridBottomSheetCtrl',
                 clickOutsideToClose: true
             }).then(function(clickedItem) {
+                /*
                 $scope.alert = clickedItem['name'] + ' clicked!';
                 $mdToast.show(
                     $mdToast.simple()
@@ -137,6 +143,7 @@ app
 
                     .hideDelay(1500)
                 );
+*/
             });
         };
 
@@ -208,7 +215,7 @@ app
                 templateUrl: 'app/views/bottom-sheet-list-template.html',
                 controller: 'ListBottomSheetCtrl'
             }).then(function(clickedItem) {
-                $scope.alert = clickedItem['name'] + ' clicked!';
+                //$scope.alert = clickedItem['name'] + ' clicked!';
             });
         };
 
@@ -265,7 +272,7 @@ app
         this.availableFilters = $products.availableFilters;
         this.availableSorts = $products.availableSorts;
         this.catalog = $products.catalog;
-        console.log("this.catalog="+ JSON.stringify(this.catalog));
+        console.log("this.catalog=" + JSON.stringify(this.catalog));
     })
     .factory('$products', function() {
         return {

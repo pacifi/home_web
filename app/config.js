@@ -148,7 +148,7 @@ app
 // Modelo lite para datos del usuario
 //====================================================
     .service('userService', function() {
-    userName: null
+    return { userName: null };
 });
 
 app
@@ -196,9 +196,9 @@ app
     console.log("location.origin=" + location.origin);
 
     //oauth2Service.clientId = "6HdrRRJTmATwasHbR8BgrwzNTi69mEAJke4VWMKK";//sqlite3 de https://github.com/practian-ioteca-project/ioteca_service
-    oauth2Service.clientId = "o5W31ZGx7XrCp4B4f6Mr0HMryYyUMuswMpL0LLi4";//MYSQL
+    oauth2Service.clientId = "o5W31ZGx7XrCp4B4f6Mr0HMryYyUMuswMpL0LLi4"; //MYSQL
     //oauth2Service.clientId = "97xtOaQ5ZU1g1C8Xh8CN2ibqCzIda7760Zy7yFMa"; //ORA
-    oauth2Service.scope = "home";//comentar si no está configurado
+    oauth2Service.scope = "home"; //comentar si no está configurado
 
     //https://github.com/angular-ui/ui-router/wiki
     $rootScope.$on("$stateChangeStart", function(event, toState, toParams, fromState, fromParams) {
