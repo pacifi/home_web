@@ -1,6 +1,6 @@
 app
     .controller('MainCtrl', function($scope, $timeout, $mdSidenav, $log, $rootScope,
-        menuService, oauth2Service, homeUrl, authUrl, $window, $mdBottomSheet, $mdToast) {
+        oauth2Service, homeUrl, authUrl, $window, $mdBottomSheet, $mdToast) {
 
         // show menu
         $scope.toggleLeft = buildDelayedToggler('left');
@@ -97,7 +97,7 @@ app
         };
         // /
 
-        $scope.menu = menuService;
+        
 
         //
         $scope.logIn = function() {
@@ -212,7 +212,7 @@ app
         $scope.showListBottomSheet = function() {
             $scope.alert = '';
             $mdBottomSheet.show({
-                templateUrl: 'app/views/bottom-sheet-list-template.html',
+                templateUrl: 'dist/views/bottom-sheet-list-template.html',
                 controller: 'ListBottomSheetCtrl'
             }).then(function(clickedItem) {
                 //$scope.alert = clickedItem['name'] + ' clicked!';

@@ -1,4 +1,6 @@
-var app = angular.module("home", ["oauth2", "ui.router",
+var app = angular.module("home", [
+
+    "ui.router",
     'ngResource',
     'ngAnimate',
     'ngAria',
@@ -8,7 +10,11 @@ var app = angular.module("home", ["oauth2", "ui.router",
     'toastr',
 
     'ngMessages',
-    'ngDevhres',
+
+    "pi.oauth2",
+    "pi.appPagination",
+    "pi.tableResponsive",
+    "pi.dynamicMenu",
 ]);
 
 
@@ -18,7 +24,6 @@ var app = angular.module("home", ["oauth2", "ui.router",
 app.constant("authUrl", "http://localhost:7001"); // Authorization Server
 app.constant("apiUrl", "http://localhost:8003"); // Resource Server intenta acceder a catalogo
 
-app.constant("menuUrl", "http://localhost:7001/api/oauth2_backend/usermenu/"); // Api que trae el menu del usuario
 app.constant("homeUrl", "http://localhost:9001"); // Página de inicio o de convergencia
 
 

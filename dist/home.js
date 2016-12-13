@@ -5,13 +5,11 @@
  * @link 
  * @license ISC
  */
-var app = angular.module("home", [ "oauth2", "ui.router", "ngResource", "ngAnimate", "ngAria", "ngSanitize", "ngMaterial", "ngMdIcons", "toastr", "ngMessages", "ngDevhres" ]);
+var app = angular.module("home", [ "ui.router", "ngResource", "ngAnimate", "ngAria", "ngSanitize", "ngMaterial", "ngMdIcons", "toastr", "ngMessages", "pi.oauth2", "pi.appPagination", "pi.tableResponsive", "pi.dynamicMenu" ]);
 
 app.constant("authUrl", "http://localhost:7001");
 
 app.constant("apiUrl", "http://localhost:8003");
-
-app.constant("menuUrl", "http://localhost:7001/api/oauth2_backend/usermenu/");
 
 app.constant("homeUrl", "http://localhost:9001");
 
@@ -128,7 +126,9 @@ app.run(function($rootScope, $state, $stateParams, $window) {
     $rootScope.$stateParams = $stateParams;
 }).run(function($rootScope, userService) {
     $rootScope.userService = userService;
-}).run(function(oauth2Service, $state, $rootScope, $location, authUrl, $window, userService) {
+}).run(function(oauth2Service, menuService, $state, $rootScope, $location, authUrl, $window, userService) {
+    menuService.menuUrl = "menu.json";
+    $rootScope.menu = menuService.getMenu();
     oauth2Service.loginUrl = authUrl + "/o/authorize/";
     oauth2Service.oidcUrl = authUrl + "/api/oauth2_backend/localuserinfo/";
     console.log("location.origin=" + location.origin);
@@ -430,7 +430,7 @@ app.controller("CategoriaCtrl", function($scope, $state, $stateParams, catalogoS
     };
 });
 
-app.controller("MainCtrl", function($scope, $timeout, $mdSidenav, $log, $rootScope, menuService, oauth2Service, homeUrl, authUrl, $window, $mdBottomSheet, $mdToast) {
+app.controller("MainCtrl", function($scope, $timeout, $mdSidenav, $log, $rootScope, oauth2Service, homeUrl, authUrl, $window, $mdBottomSheet, $mdToast) {
     $scope.toggleLeft = buildDelayedToggler("left");
     $scope.toggleRight = buildToggler("right");
     $scope.asideFolded = false;
@@ -493,7 +493,6 @@ app.controller("MainCtrl", function($scope, $timeout, $mdSidenav, $log, $rootSco
         name: "Home App",
         version: "1.0.1"
     };
-    $scope.menu = menuService;
     $scope.logIn = function() {
         console.log("logIn");
         oauth2Service.createLoginUrl().then(function(url) {
@@ -562,7 +561,7 @@ app.controller("BottomSheetExample", function($scope, $timeout, $mdBottomSheet, 
     $scope.showListBottomSheet = function() {
         $scope.alert = "";
         $mdBottomSheet.show({
-            templateUrl: "app/views/bottom-sheet-list-template.html",
+            templateUrl: "dist/views/bottom-sheet-list-template.html",
             controller: "ListBottomSheetCtrl"
         }).then(function(clickedItem) {});
     };
@@ -708,104 +707,5 @@ app.factory("catalogoService", function($resource, apiUrl) {
                 }
             }
         })
-    };
-});
-
-app.factory("menuService", function($http, menuUrl) {
-    function getUserMenu() {
-        console.log("exec UserMenuView");
-        return $http.get(menuUrl);
-    }
-    var sections = [];
-    sections.push({
-        title: "Dashboard",
-        state: "home.dashboard",
-        type: "link"
-    });
-    sections.push({
-        menu: [ {
-            title: "U.I.",
-            type: "toggle",
-            state: "ui",
-            menu_items: [ {
-                title: "Test 1 uno más",
-                state: "ui.test1",
-                type: "link"
-            }, {
-                title: "2Test 2",
-                state: "ui.test2",
-                type: "link"
-            }, {
-                title: "Test 3",
-                state: "ui.test3",
-                type: "link"
-            }, {
-                title: "Test 4",
-                state: "ui.test4",
-                type: "link"
-            }, {
-                title: "Test 5",
-                state: "ui.test5",
-                type: "link"
-            }, {
-                title: "Test Directivas",
-                state: "ui.dir",
-                type: "link"
-            } ]
-        } ]
-    });
-    sections.push({
-        menu: [ {
-            title: "Auths System",
-            type: "toggle",
-            state: "auths.system",
-            menu_items: [ {
-                title: "xx",
-                state: "auths.system.xx",
-                type: "link"
-            }, {
-                title: "Grupos",
-                state: "auths.system.ct",
-                type: "link"
-            }, {
-                title: "Permission",
-                state: "auths.system.permission",
-                type: "link"
-            }, {
-                title: "Menu",
-                state: "auths.system.menu",
-                type: "link"
-            }, {
-                title: "Log",
-                state: "auths.system.log",
-                type: "link"
-            } ]
-        } ]
-    });
-    sections.push({
-        menu: [ {
-            title: "Catálogo",
-            type: "toggle",
-            state: "home.catalogo",
-            menu_items: [ {
-                title: "Categorías",
-                state: "home.catalogo.categorias",
-                type: "link"
-            }, {
-                title: "Autores",
-                state: "home.catalogo.autores",
-                type: "link"
-            } ]
-        } ]
-    });
-    getUserMenu().then(function(r) {
-        menu = r.data;
-        console.log("menuService.getUserMenu():" + JSON.stringify(menu));
-        sections.push(menu);
-    }, function(error) {
-        console.log("error in menuService.getUserMenu():" + JSON.stringify(error));
-    });
-    return {
-        sections: sections
     };
 });

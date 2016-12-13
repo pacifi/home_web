@@ -168,3 +168,5 @@ See https://github.com/practian-ioteca-project/home_web/graphs/contributors
 .. _Authorization server: https://github.com/practian-ioteca-project/oauth2_backend_service
 .. _Catalogo resource server: https://github.com/practian-ioteca-project/catalogo_service
 
+subst z: .
+subst /d z:
