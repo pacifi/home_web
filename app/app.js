@@ -14,7 +14,6 @@ var app = angular.module("home", [
     "pi.oauth2",
     "pi.appPagination",
     "pi.tableResponsive",
-    "pi.dynamicMenu",
 ]);
 
 

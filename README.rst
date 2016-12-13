@@ -63,8 +63,8 @@ De ser necesario actualice su clientId::
 
 Run the app in 9001 port::
 
-	E:\dev\home_web>npm install
-	E:\dev\home_web>gulp serve
+	
+	E:\dev\home_web>gulp serveE:\dev\home_web>npm install
 
 	[09:22:36] Using gulpfile E:\dev\home_web\gulpfile.js
 	[09:22:36] Starting 'serve'...
@@ -82,7 +82,7 @@ Revise las configuraciones
 
 
 	var app = angular.module("catalogo", [
-	    "pi.menuuno",
+	    "pi.dynamicMenu",
 	    "pi.oauth2",
 	    "pi.appPagination",
 	    "pi.tableResponsive",

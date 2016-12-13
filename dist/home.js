@@ -5,7 +5,7 @@
  * @link 
  * @license ISC
  */
-var app = angular.module("home", [ "ui.router", "ngResource", "ngAnimate", "ngAria", "ngSanitize", "ngMaterial", "ngMdIcons", "toastr", "ngMessages", "pi.oauth2", "pi.appPagination", "pi.tableResponsive", "pi.dynamicMenu" ]);
+var app = angular.module("home", [ "ui.router", "ngResource", "ngAnimate", "ngAria", "ngSanitize", "ngMaterial", "ngMdIcons", "toastr", "ngMessages", "pi.oauth2", "pi.appPagination", "pi.tableResponsive" ]);
 
 app.constant("authUrl", "http://localhost:7001");
 
@@ -126,9 +126,7 @@ app.run(function($rootScope, $state, $stateParams, $window) {
     $rootScope.$stateParams = $stateParams;
 }).run(function($rootScope, userService) {
     $rootScope.userService = userService;
-}).run(function(oauth2Service, menuService, $state, $rootScope, $location, authUrl, $window, userService) {
-    menuService.menuUrl = "menu.json";
-    $rootScope.menu = menuService.getMenu();
+}).run(function(oauth2Service, $state, $rootScope, $location, authUrl, $window, userService) {
     oauth2Service.loginUrl = authUrl + "/o/authorize/";
     oauth2Service.oidcUrl = authUrl + "/api/oauth2_backend/localuserinfo/";
     console.log("location.origin=" + location.origin);
