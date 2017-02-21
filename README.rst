@@ -9,7 +9,7 @@ home_web
 
 
     .. image:: https://github.com/practian-ioteca-project/home_web/blob/master/media/doc/e4-client_app_home_web.png
-        :alt: HTTPie compared to cURL
+        :alt: home_web
         :width: 100%
         :align: center
 
