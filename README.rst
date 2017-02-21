@@ -63,14 +63,31 @@ De ser necesario actualice su clientId::
 
 Run the app in 9001 port::
 
-	
-	E:\dev\home_web>gulp serveE:\dev\home_web>npm install
+	E:\dev\home_web>npm install
+	E:\dev\home_web>gulp serve
 
 	[09:22:36] Using gulpfile E:\dev\home_web\gulpfile.js
 	[09:22:36] Starting 'serve'...
 	[09:22:36] Finished 'serve' after 93 ms
 	[09:22:36] Server started http://localhost:9001
 
+
+(Recomendado)Run the app in 9001 port with serve-browser-sync::
+
+	E:\practian-ioteca-project\home_web>gulp
+	[05:17:20] Using gulpfile E:\practian-ioteca-project\home_web\gulpfile.js
+	[05:17:20] Starting 'serve-browser-sync'...
+	[05:17:22] Finished 'serve-browser-sync' after 1.98 s
+	[05:17:22] Starting 'watch'...
+	[05:17:22] Finished 'watch' after 29 ms
+	[05:17:22] Starting 'default'...
+	[05:17:22] Finished 'default' after 32 μs
+	[BS] Access URLs:
+	 -------------------------------
+	    Local: http://localhost:9001
+	 External: http://127.0.0.1:9001
+	 -------------------------------
+	[BS] Serving files from: ./
 
 ===========
 Revise las configuraciones
